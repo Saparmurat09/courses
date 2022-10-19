@@ -43,7 +43,8 @@ class CourseDetail(APIView):
         course = self.get_object(pk)
         serializer = CourseSerializer(course)
         return Response(serializer.data)
-    
+        
+    """    
     def put(self, request, pk, format=None):
         course = self.get_object(pk)
         serializer = CourseSerializer(course, data=request.data)
@@ -53,7 +54,8 @@ class CourseDetail(APIView):
             return Response(serializer.data)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+    """
+
     def delete(self, request, pk, format=None):
         course = self.get_object(pk)
         course.delete()
