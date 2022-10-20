@@ -21,6 +21,9 @@ class BranchSerializer(serializers.ModelSerializer):
 
 
 class CourseSerializer(serializers.ModelSerializer):
+    branches = BranchSerializer()
+    category = CategorySerializer()
+    contacts = ContactSerializer()
     class Meta:
         model = Course
         fields = ['name', 'description', 'category', 'logo', 'contacts', 'branches']
