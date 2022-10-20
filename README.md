@@ -25,7 +25,7 @@ Look for the instructions in the following link
 [Python](https://www.python.org/downloads/)
 ```
 
-I do highly recommend using (Virtual Studio Code)[https://code.visualstudio.com/] as IDE with its wonderful extensions it provides quite pleasant codin experience
+I do highly recommend using **(Virtual Studio Code)**[https://code.visualstudio.com/] as IDE with its wonderful extensions it provides quite pleasant codin experience
 
 ### Installing
 
