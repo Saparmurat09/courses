@@ -11,9 +11,13 @@ from rest_framework import status
 
 class CourseList(APIView):
     """
-    List all Courses, or create a Course
-    """
+    get:
+    Return a list of all existing courses.
 
+    post:
+    Create a new course instance.
+    """
+    
     def get(self, request, format=None):
         courses = Course.objects.all()
         serializer = CourseSerializer(courses, many=True)
@@ -30,7 +34,11 @@ class CourseList(APIView):
 
 class CourseDetail(APIView):
     """
-    Retrieve, update or delete a course instance. 
+    get:
+    Return the given course.
+
+    delete:
+    Delete the given user.
     """
 
     def get_object(self, pk):
@@ -40,23 +48,15 @@ class CourseDetail(APIView):
             raise Http404
     
     def get(self, request, pk, format=None):
+
         course = self.get_object(pk)
         serializer = CourseSerializer(course)
         return Response(serializer.data)
-        
-    """    
-    def put(self, request, pk, format=None):
-        course = self.get_object(pk)
-        serializer = CourseSerializer(course, data=request.data)
-
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    """
 
     def delete(self, request, pk, format=None):
+        """
+        GET courses/id
+        """
         course = self.get_object(pk)
         course.delete()
 
