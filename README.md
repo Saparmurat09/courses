@@ -1,6 +1,6 @@
 # Project Title
 
-This is an API that provides access to list of courses, and allows to perform POST, DELETE reqeuest
+This is an API that provides access to list of courses, and allows to perform POST, GET, DELETE reqeuest
 
 ## Getting Started
 
