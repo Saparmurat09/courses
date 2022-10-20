@@ -39,8 +39,8 @@ class Course(models.Model):
     description = models.TextField(max_length=300, help_text='Description of the course')
     category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)
     logo = models.CharField(max_length=100, blank=True, null=True)
-    contacts = models.OneToOneField(Contact, on_delete=models.CASCADE)
-    branches = models.OneToOneField(Branch, on_delete=models.CASCADE)
+    contacts = models.ForeignKey(Contact, on_delete=models.CASCADE)
+    branches = models.ForeignKey(Branch, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
