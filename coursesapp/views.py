@@ -5,11 +5,11 @@ from django.http import Http404
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, generics
 
 # Create your views here.
 
-class CourseList(APIView):
+class CourseList(generics.ListCreateAPIView):
     """
     get:
     Return a list of all existing courses.
@@ -17,22 +17,10 @@ class CourseList(APIView):
     post:
     Create a new course instance.
     """
-    
-    def get(self, request, format=None):
-        courses = Course.objects.all()
-        serializer = CourseSerializer(courses, many=True)
-        return Response(serializer.data)
-    
-    def post(self, request, format=None):
-        serializer = CourseSerializer(data=request.data)
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
 
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-class CourseDetail(APIView):
+class CourseDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     get:
     Return the given course.
@@ -40,25 +28,5 @@ class CourseDetail(APIView):
     delete:
     Delete the given user.
     """
-
-    def get_object(self, pk):
-        try:
-            return Course.objects.get(pk=pk)
-        except Course.DoesNotExist:
-            raise Http404
-    
-    def get(self, request, pk, format=None):
-
-        course = self.get_object(pk)
-        serializer = CourseSerializer(course)
-        return Response(serializer.data)
-
-    def delete(self, request, pk, format=None):
-        """
-        GET courses/id
-        """
-        course = self.get_object(pk)
-        course.delete()
-
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
