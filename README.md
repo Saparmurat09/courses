@@ -12,7 +12,7 @@ get some deep breath of air and stand up, then follow the badly written instruct
 Documentation for Courses API was made Swagger/ReDocs
 
 ```
-    localhost/documentation
+    localhost/docs
 ```
 
 ### Prerequisites
