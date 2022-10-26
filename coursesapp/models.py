@@ -37,10 +37,10 @@ class Branch(models.Model):
 class Course(models.Model):
     name = models.CharField(max_length=100, help_text='Name of the course')
     description = models.TextField(max_length=300, help_text='Description of the course')
-    category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)
+    category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, null=True)
     logo = models.CharField(max_length=100, blank=True, null=True)
-    contacts = models.ForeignKey(Contact, on_delete=models.CASCADE)
-    branches = models.ForeignKey(Branch, on_delete=models.CASCADE)
+    contacts = models.ForeignKey(Contact, on_delete=models.CASCADE, null=True)
+    branches = models.ForeignKey(Branch, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.name
