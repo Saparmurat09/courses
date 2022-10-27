@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'courses.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 if config('DEPLOYMENT'):
-    DATABASE = {
+    DATABASES = {
         'default': {
             'ENGINE': config('DB_ENGINE'),
             'NAME': config('DB_NAME'),
