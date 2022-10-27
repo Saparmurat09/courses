@@ -27,8 +27,11 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = []
-
+# Allowed hosts
+if config('DEPLOYMENT'):
+    ALLOWED_HOSTS = config('ALLOWED_HOSTS').split()
+else:
+    ALLOWED_HOSTS = config('LOCAL_ALLOWED_HOSTS').split()
 
 # Application definition
 
@@ -142,8 +145,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = { 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' }
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-
-if config('DEPLOYMENT'):
-    ALLOWED_HOSTS = config('ALLOWED_HOSTS').split()
-else:
-    ALLOWED_HOSTS = config('LOCAL_ALLOWED_HOSTS').split()
